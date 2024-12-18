@@ -4,6 +4,9 @@ Create a grid
 * include filters
 * paginator
 * change order in header
+example: 
+
+![demo]([http://url/to/img.png](https://github.com/globalassistgroup/gag.testdic2024/blob/develop/1-grid.png))
 
 
 ## Second stage (optional)
