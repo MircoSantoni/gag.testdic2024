@@ -6,7 +6,7 @@ Create a grid
 * change order in header
 example: 
 
-![demo]([http://url/to/img.png](https://github.com/globalassistgroup/gag.testdic2024/blob/develop/1-grid.png))
+![demo](https://github.com/globalassistgroup/gag.testdic2024/blob/develop/1-grid.png)
 
 
 ## Second stage (optional)
