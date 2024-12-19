@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.testglobalasist.testglobalassist.dtos.RequestClientDto;
 import com.testglobalasist.testglobalassist.dtos.ResponseClientDto;
 import com.testglobalasist.testglobalassist.entities.Client;
+import com.testglobalasist.testglobalassist.exceptions.ClientNotFoundException;
+import com.testglobalasist.testglobalassist.exceptions.EmailAlreadyInUseException;
+import com.testglobalasist.testglobalassist.exceptions.EmptyResourceException;
 import com.testglobalasist.testglobalassist.mappers.ClientMapper;
 import com.testglobalasist.testglobalassist.repositories.ClientRepository;
 import com.testglobalasist.testglobalassist.services.ClientService;
@@ -32,7 +35,7 @@ public class ClientServiceIMPL implements ClientService {
                 .collect(Collectors.toSet());
 
         if (clientSet.isEmpty()) {
-            throw new RuntimeException("La lista de clientes esta vacia");
+            throw new EmptyResourceException("La lista de clientes esta vacia");
         }
 
         return clientMapper.setClientToResponseClientDtoSet(clientSet);
@@ -41,7 +44,7 @@ public class ClientServiceIMPL implements ClientService {
     @Override
     public ResponseClientDto getClient(Long id) {
         Client client = clientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente con id" + id + " no encontrado"));
+                .orElseThrow(() -> new ClientNotFoundException("Cliente con id" + id + " no encontrado"));
 
         return clientMapper.clientToResponseClientDto(client);
     }
@@ -49,7 +52,7 @@ public class ClientServiceIMPL implements ClientService {
     @Override
     public ResponseClientDto createClient(RequestClientDto requestClientDto) {
         Client client = clientRepository.findByEmail(requestClientDto.email())
-                .orElseThrow(() -> new RuntimeException("Ya existe un cliente con ese mail"));
+                .orElseThrow(() -> new EmailAlreadyInUseException("Ya existe un cliente con el mail" + requestClientDto.email()));
 
         Client newClient = new Client();
         newClient.setFirstName(requestClientDto.firstName());
@@ -62,14 +65,14 @@ public class ClientServiceIMPL implements ClientService {
         Client savedClient = clientRepository.save(newClient);
         return clientMapper.clientToResponseClientDto(savedClient);
     }
-
+    
     @Override
     public ResponseClientDto updateClient(RequestClientDto requestClientDto, Long id) {
         Client client = clientRepository.findByEmail(requestClientDto.email())
-                .orElseThrow(() -> new RuntimeException("Ya existe un cliente con ese mail"));
+                .orElseThrow(() -> new EmailAlreadyInUseException("Ya existe un cliente con el mail" + requestClientDto.email()));
 
         Client existingClient = clientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No existe un cliente con ese id"));
+                .orElseThrow(() -> new ClientNotFoundException("Cliente con id" + id + " no encontrado"));
 
         existingClient.setFirstName(requestClientDto.firstName());
         existingClient.setLastName(requestClientDto.lastName());
@@ -85,7 +88,7 @@ public class ClientServiceIMPL implements ClientService {
     @Override
     public ResponseClientDto deleteClient(Long id) {
         Client client = clientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No existe un cliente con ese id"));
+                .orElseThrow(() -> new ClientNotFoundException("Cliente con id" + id + " no encontrado"));
 
         clientRepository.delete(client);
         return clientMapper.clientToResponseClientDto(client);
