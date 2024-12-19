@@ -1,8 +1,10 @@
 package com.testglobalasist.testglobalassist.entities;
 
 import com.testglobalasist.testglobalassist.enumms.Gender;
+import com.testglobalasist.testglobalassist.utils.GenderConverter;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -35,17 +37,16 @@ public class Client {
 
     public String email;
 
-    // El campo gender es un Enumm, es mas flexible
-    @Column(name = "first_name" , nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", nullable = false)
+    @Convert(converter = GenderConverter.class)
     public Gender gender;
 
-    @Column(name = "ip_adress" , nullable = false)
-    public String ipAdress;
+    @Column(name = "ip_address" , nullable = false)
+    public String ipAddress;
 
     // Country tambien podria ser un Enumm para que no se puedan 
     // colocar paises inexistentes
-    @Column(name = "country_name" , nullable = false)
+    @Column(name = "country" , nullable = false)
     public String country;
     
 }

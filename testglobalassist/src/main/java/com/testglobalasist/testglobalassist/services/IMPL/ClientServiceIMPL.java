@@ -1,5 +1,7 @@
 package com.testglobalasist.testglobalassist.services.IMPL;
 
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,20 +28,20 @@ public class ClientServiceIMPL implements ClientService {
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
 
-    @Override
-    @Transactional(readOnly = true)
-    public Set<ResponseClientDto> getClients() {
+@Override
+@Transactional(readOnly = true)
+public Set<ResponseClientDto> getClients() {
+    List<Client> clientList = clientRepository.findAll();
+    Set<Client> clientSet = clientList.stream()
+            .sorted(Comparator.comparing(Client::getId))
+            .collect(Collectors.toCollection(LinkedHashSet::new));
 
-        List<Client> clientList = clientRepository.findAll();
-        Set<Client> clientSet = clientList.stream()
-                .collect(Collectors.toSet());
-
-        if (clientSet.isEmpty()) {
-            throw new EmptyResourceException("La lista de clientes esta vacia");
-        }
-
-        return clientMapper.setClientToResponseClientDtoSet(clientSet);
+    if (clientSet.isEmpty()) {
+        throw new EmptyResourceException("La lista de clientes esta vacia");
     }
+
+    return clientMapper.setClientToResponseClientDtoSet(clientSet);
+}
 
     @Override
     public ResponseClientDto getClient(Long id) {
@@ -58,7 +60,7 @@ public class ClientServiceIMPL implements ClientService {
         newClient.setFirstName(requestClientDto.firstName());
         newClient.setLastName(requestClientDto.lastName());
         newClient.setGender(requestClientDto.gender());
-        newClient.setIpAdress(requestClientDto.ipAdress());
+        newClient.setIpAddress(requestClientDto.ipAdress());
         newClient.setEmail(requestClientDto.email());
         newClient.setCountry(requestClientDto.country());
 
@@ -77,7 +79,7 @@ public class ClientServiceIMPL implements ClientService {
         existingClient.setFirstName(requestClientDto.firstName());
         existingClient.setLastName(requestClientDto.lastName());
         existingClient.setGender(requestClientDto.gender());
-        existingClient.setIpAdress(requestClientDto.ipAdress());
+        existingClient.setIpAddress(requestClientDto.ipAdress());
         existingClient.setEmail(requestClientDto.email());
         existingClient.setCountry(requestClientDto.country());
 
