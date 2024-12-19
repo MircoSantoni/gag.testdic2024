@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TestglobalassistApplication<testglobalassist>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.testglobalasist.testglobalassist.TestglobalassistApplication",
+            "projectName": "testglobalassist",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
