@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import logo from './logo.svg';
 import './App.css';
 
@@ -21,5 +22,21 @@ function App() {
     </div>
   );
 }
+=======
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/home" element={<Layout><Home/></Layout>} />
+      </Routes>
+    </Router>
+  );
+};
+>>>>>>> Stashed changes
 
 export default App;
