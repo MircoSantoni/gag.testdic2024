@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from './axiosConfig';
 
 const api = axios.create({
     // aca va la url, depende de que como mandar este proyecto

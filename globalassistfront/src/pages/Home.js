@@ -1,6 +1,7 @@
 "use client"
 import Footer from "../components/Footer";
-import Header from "../components/Header"
+import Header from "../components/Header";
+import ClientPage from "../components/Content";
 
 export default function HomePage() {
 
@@ -8,7 +9,7 @@ export default function HomePage() {
     <div>
         <div>
             <Header/>
-            
+                <ClientPage/>
             <Footer/>
         </div>
     </div>

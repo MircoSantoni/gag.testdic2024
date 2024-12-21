@@ -1,6 +1,6 @@
 import api from './axiosConfig'
 
-export const comprobanteApi = {
+export const clientApi = {
     getAll: async () => {
         const response = await api.get('/');
         return response.data;
