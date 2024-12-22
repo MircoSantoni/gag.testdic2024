@@ -1,3 +1,7 @@
 FROM openjdk:17-jdk-alpine
+
 COPY target/testglobalassist-0.0.1-SNAPSHOT.jar globalassist.jar
-ENTRYPOINT [ "java", "-jar", "globalassist.jar" ]
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "globalassist.jar"]

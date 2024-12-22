@@ -1,6 +1,7 @@
--- init.sql
-CREATE TABLE IF NOT EXISTS clients (
-    id INTEGER PRIMARY KEY,
+DROP TABLE IF EXISTS clients;
+
+CREATE TEMP TABLE temp_clients (
+    id INTEGER,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
     email VARCHAR(255),
@@ -9,7 +10,29 @@ CREATE TABLE IF NOT EXISTS clients (
     country VARCHAR(255)
 );
 
-COPY clients (id, first_name, last_name, email, gender, ip_address, country)
-FROM '/docker-entrypoint-initdb.d/data.csv' 
-DELIMITER ',' 
-CSV HEADER;
+\copy temp_clients FROM '/docker-entrypoint-initdb.d/data.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
+
+CREATE TABLE clients (
+    id BIGINT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    gender VARCHAR(255) NOT NULL,
+    ip_address VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL
+);
+
+INSERT INTO clients
+SELECT 
+    CAST(id AS BIGINT),
+    first_name,
+    last_name,
+    email,
+    gender,
+    ip_address,
+    country
+FROM temp_clients;
+
+SELECT setval(pg_get_serial_sequence('clients', 'id'), (SELECT MAX(id) FROM clients));
+
+SELECT COUNT(*) FROM clients;
