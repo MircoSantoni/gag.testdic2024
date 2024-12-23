@@ -13,7 +13,7 @@ CREATE TEMP TABLE temp_clients (
 \copy temp_clients FROM '/docker-entrypoint-initdb.d/data.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
 
 CREATE TABLE clients (
-    id BIGINT PRIMARY KEY,
+    id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -22,17 +22,19 @@ CREATE TABLE clients (
     country VARCHAR(255) NOT NULL
 );
 
-INSERT INTO clients
+INSERT INTO clients (first_name, last_name, email, gender, ip_address, country)
 SELECT 
-    CAST(id AS BIGINT),
     first_name,
     last_name,
     email,
     gender,
     ip_address,
-    country
+    country 
 FROM temp_clients;
 
 SELECT setval(pg_get_serial_sequence('clients', 'id'), (SELECT MAX(id) FROM clients));
+
+DROP TABLE temp_clients;
+
 
 SELECT COUNT(*) FROM clients;
