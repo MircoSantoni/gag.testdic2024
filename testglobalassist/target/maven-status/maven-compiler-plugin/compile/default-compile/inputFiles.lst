@@ -1,0 +1,17 @@
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\dtos\ResponseClientDto.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\security\CorsConfig.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\dtos\RequestClientDto.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\services\ClientService.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\enumms\Gender.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\repositories\ClientRepository.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\exceptions\GlobalExceptionHandler.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\TestglobalassistApplication.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\controllers\ClientController.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\security\SecurityConfig.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\exceptions\ClientNotFoundException.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\mappers\ClientMapper.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\exceptions\EmailAlreadyInUseException.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\services\IMPL\ClientServiceIMPL.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\entities\Client.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\utils\GenderConverter.java
+C:\Users\santo\OneDrive\Escritorio\globalAssistTest\testglobalassist\src\main\java\com\testglobalasist\testglobalassist\exceptions\EmptyResourceException.java
