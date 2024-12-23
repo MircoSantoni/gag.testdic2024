@@ -1,28 +1,36 @@
-## First stage
-# FrontEnd
-Create a grid
-* include filters
-* paginator
-* change order in header
-example: 
+# Global Assist Test
 
-![demo](https://github.com/globalassistgroup/gag.testdic2024/blob/develop/1-grid.png)
+## Description
+Este proyecto incluye un paginador y una api, son parte de una prueba de Global Assist
+
+## Tecnologías
+- Frontend: React
+- Backend: Spring Boot y Java
+- Base de datos: PostgreSQL
+- Contenedores: Docker
+
+### Configuración
+El codigo backend de este proyecto utiliza el puerto 8080, ademas, React por defecto usa el puerto 80 a la hora de deployar, por ultimo el puesto 5432 es usado por PostgreSQl, se deben tener todos los puertos disponibles.
+
+#### Variables de Entorno del Backend
+En el docker compose se encuentran las variables de entorno de la BDD:
+- SPRING_DATASOURCE_URL=jdbc:postgresql://global_assist_db:5432/postgres
+- SPRING_DATASOURCE_USERNAME=postgres
+- SPRING_DATASOURCE_PASSWORD=test1234
 
 
-## Second stage (optional)
-# Webservices webapi
-Create this methods
-* GET (list) /customer/
-* GET /customer/{id}
-* POST /customer/
-* PUT /customer/{id}
-* DELETE /customer/{id}
+### Ejecutar con docker-compose
 
+# Construir imagenes
+docker-compose build
 
-## DOC and Deploy
-# include guide for deploy
-* include repo
-* add steps for download
+# Levantar imagenes
+docker-compose up
 
-*** Send to mbernal@globalassistgroup.com
-** subject: "Test Dec2024
+###  Verificar la Instalación
+Una vez que todos los contenedores estén ejecutándose, puedes acceder a:
+- Frontend: http://localhost:80
+- Backend: http://localhost:8080
+- Base de datos: localhost:5432
+
+## Saludos!! 😎🫡
