@@ -53,14 +53,16 @@ public Set<ResponseClientDto> getClients() {
 
     @Override
     public ResponseClientDto createClient(RequestClientDto requestClientDto) {
-        Client client = clientRepository.findByEmail(requestClientDto.email())
-                .orElseThrow(() -> new EmailAlreadyInUseException("Ya existe un cliente con el mail" + requestClientDto.email()));
+        boolean exists = clientRepository.findByEmail(requestClientDto.email()).isPresent();
+        if (exists) {
+            throw new EmailAlreadyInUseException("Ya existe un cliente con el email: " + requestClientDto.email());
+        }
 
         Client newClient = new Client();
         newClient.setFirstName(requestClientDto.firstName());
         newClient.setLastName(requestClientDto.lastName());
         newClient.setGender(requestClientDto.gender());
-        newClient.setIpAddress(requestClientDto.ipAdress());
+        newClient.setIpAddress(requestClientDto.ipAddress());
         newClient.setEmail(requestClientDto.email());
         newClient.setCountry(requestClientDto.country());
 
@@ -79,7 +81,7 @@ public Set<ResponseClientDto> getClients() {
         existingClient.setFirstName(requestClientDto.firstName());
         existingClient.setLastName(requestClientDto.lastName());
         existingClient.setGender(requestClientDto.gender());
-        existingClient.setIpAddress(requestClientDto.ipAdress());
+        existingClient.setIpAddress(requestClientDto.ipAddress());
         existingClient.setEmail(requestClientDto.email());
         existingClient.setCountry(requestClientDto.country());
 

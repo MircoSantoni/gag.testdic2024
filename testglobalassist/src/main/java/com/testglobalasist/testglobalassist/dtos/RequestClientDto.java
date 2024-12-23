@@ -20,7 +20,7 @@ public record RequestClientDto(
     
     @NotNull(message = "La direccion IP es requerida para crear un cliente")
     @Pattern(regexp = "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$", message = "La direccion IP debe tener un formato válido (e.g., 192.168.0.1)")
-    String ipAdress,
+    String ipAddress,
     
     @NotNull(message = "El email es requerido para crear un cliente")
     @Email(message = "El email debe ser válido")
