@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-12-23T15:09:24-0300",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.41.0.v20241217-1506, environment: Java 17.0.13 (Eclipse Adoptium)"
+    date = "2024-12-23T16:50:54-0300",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
 )
 @Component
 public class ClientMapperImpl implements ClientMapper {
@@ -66,12 +66,12 @@ public class ClientMapperImpl implements ClientMapper {
 
         Client client = new Client();
 
-        client.setCountry( requestClientDto.country() );
-        client.setEmail( requestClientDto.email() );
         client.setFirstName( requestClientDto.firstName() );
+        client.setLastName( requestClientDto.lastName() );
+        client.setEmail( requestClientDto.email() );
         client.setGender( requestClientDto.gender() );
         client.setIpAddress( requestClientDto.ipAddress() );
-        client.setLastName( requestClientDto.lastName() );
+        client.setCountry( requestClientDto.country() );
 
         return client;
     }
