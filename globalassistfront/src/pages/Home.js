@@ -4,16 +4,12 @@ import Header from "../components/Header";
 import ClientPage from "../components/Content";
 
 export default function HomePage() {
-
     return (
-    <div>
-        <div>
-            <Header/>
-                <ClientPage/>
-            <Footer/>
-        </div>
-    </div>
-
-    )
+      <div className="min-h-screen flex flex-col">
+        <Header />
+          <ClientPage />
+        <Footer />
+      </div>
+    );
 
 }

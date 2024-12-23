@@ -1,4 +1,4 @@
-import api from './axiosConfig'
+import api from './axiosConfig';
 
 export const clientApi = {
     getAll: async () => {
@@ -12,7 +12,6 @@ export const clientApi = {
     },
 
     save: async (client) => {
-        console.log(client);
         const response = await api.post('/', client);
         return response.data;
     },
