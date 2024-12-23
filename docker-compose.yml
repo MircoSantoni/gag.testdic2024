@@ -1,0 +1,56 @@
+services:
+  global_assist:
+    container_name: global_assist_back
+    image: global_assist_back:1.0.0
+    build: 
+      context: ./testglobalassist
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://global_assist_db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=test1234
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+    depends_on:
+      global_assist_db:
+        condition: service_healthy
+    networks:
+      - global_assist_network
+
+  global_assist_frontend:
+    container_name: global_assist_frontend
+    build:
+      context: ./globalassistfront
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - global_assist
+    networks:
+      - global_assist_network
+
+  global_assist_db:
+    container_name: global_assist_db
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=test1234
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/data.csv:/docker-entrypoint-initdb.d/data.csv
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - global_assist_network
+
+networks:
+  global_assist_network:
+    driver: bridge
